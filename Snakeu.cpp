@@ -27,9 +27,9 @@ std::atomic_int ext(0);
 void run();
 void move(std::vector<Snake_body> &arr);
 void getKeypress();
-void draw(vector<Snake_body> &arr, pair<int, int> food);
-pair<int,int> random(int x, int y, vector<Snake_body> &arr);
-bool is_safe(int x, int y, vector<Snake_body> &arr);
+void draw(std::vector<Snake_body> &arr, std::pair<int, int> food);
+std::pair<int,int> random(int x, int y, std::vector<Snake_body> &arr);
+bool is_safe(int x, int y, std::vector<Snake_body> &arr);
 
 /*oid draw(Snake_body arr[], pair<int, int> food);
 pair<int,int> random(int x, int y, Snake_body arr[]);
