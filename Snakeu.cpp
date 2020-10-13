@@ -22,4 +22,5 @@ pair<int,int> random(int x, int y, Snake_body arr[]);
 bool is_safe(int x, int y, Snake_body arr[]);
 int main(){
     draw();
+    move();
 }
