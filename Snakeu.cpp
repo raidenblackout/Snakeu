@@ -31,7 +31,6 @@ void draw(vector<Snake_body> &arr, pair<int, int> food);
 pair<int,int> random(int x, int y, vector<Snake_body> &arr);
 bool is_safe(int x, int y, vector<Snake_body> &arr);
 
-
 /*oid draw(Snake_body arr[], pair<int, int> food);
 pair<int,int> random(int x, int y, Snake_body arr[]);
 bool is_safe(int x, int y, Snake_body arr[]);*/
@@ -62,36 +61,28 @@ void getKeypress(){
 void move(std::vector<Snake_body> &arr){
     /*Need to fix something here. So just ignore this part and carry on with your work*/
     if(key==left){
-        Snake_body temp=arr[0];
-        arr[0].x--;
-        for(int i=arr.size()-1;i>1;i--){
+        for(int i=arr.size()-1;i>0;i--){
             arr[i]=arr[i-1];
         }
-        arr[1]=temp;
+        arr[0].x--;
         //arr.pop_back();
     }else if(key==right){
-        Snake_body temp=arr[0];
-        arr[0].x++;
-        for(int i=arr.size()-1;i>1;i--){
+        for(int i=arr.size()-1;i>0;i--){
             arr[i]=arr[i-1];
         }
-        arr[1]=temp;
+        arr[0].x++;
         //arr.pop_back();
     }else if(key==up){
-        Snake_body temp=arr[0];
-        arr[0].y--;
-        for(int i=arr.size()-1;i>1;i--){
+        for(int i=arr.size()-1;i>0;i--){
             arr[i]=arr[i-1];
         }
-        arr[1]=temp;
+        arr[0].y--;
         //arr.pop_back();
     }else if(key==down){
-        Snake_body temp=arr[0];
-        arr[0].y++;
-        for(int i=arr.size()-1;i>1;i--){
+        for(int i=arr.size()-1;i>0;i--){
             arr[i]=arr[i-1];
         }
-        arr[1]=temp;
+        arr[0].y++;
         //arr.pop_back();
     }
     
@@ -114,14 +105,18 @@ void run(){
         for(int i=0;i<15;i++){
             //std::cout<<'#';
             for(int j=0;j<15;j++){
+                bool f=0;
                 for(int k=0;k<arr.size();k++){
                     //std::cout<<arr[k].x<<","<<arr[k].y;
                     if(arr[k].x==j && arr[k].y==i){
                         std::cout<<'0';
-                    }else{
-                        std::cout<<" ";
+                        f=1;
                     }
                 }
+                if(!f){
+                    std::cout<<' ';
+                }
+
             }
             //std::cout<<'#';
             std::cout<<std::endl;
