@@ -98,12 +98,12 @@ void run(){
     while(!ext){
         //std::cout<<key<<std::endl;
         system("cls");
-        /*for(int i=0;i<17;i++){
+        for(int i=0;i<17;i++){
             std::cout<<'#';
-        }*/
+        }
         std::cout<<std::endl;
         for(int i=0;i<15;i++){
-            //std::cout<<'#';
+            std::cout<<'#';
             for(int j=0;j<15;j++){
                 bool f=0;
                 for(int k=0;k<arr.size();k++){
@@ -118,7 +118,7 @@ void run(){
                 }
 
             }
-            //std::cout<<'#';
+            std::cout<<'#';
             std::cout<<std::endl;
         }
         for(int i=0;i<17;i++){
