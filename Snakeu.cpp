@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <chrono>
+
 enum keyCode{
     left='a',
     down='s',
@@ -24,22 +25,17 @@ class Snake_body{
 std::atomic_int prev_key(0);
 std::atomic_int key(0);
 std::atomic_int ext(0);
+
 void run();
 void move(std::vector<Snake_body> &arr);
 void getKeypress();
 void draw(std::vector<Snake_body> &arr, std::pair<int, int> food);
-std::pair<int,int> random(int x, int y, std::vector<Snake_body> &arr);
-bool is_safe(int x, int y, std::vector<Snake_body> &arr);
-
-/*oid draw(Snake_body arr[], pair<int, int> food);
-pair<int,int> random(int x, int y, Snake_body arr[]);
-bool is_safe(int x, int y, Snake_body arr[]);*/
+std::pair<int,int> random(int length, int height, std::vector<Snake_body> &arr);
+bool is_safe(int length, int height, std::vector<Snake_body> &arr);
 int main(){
     std::thread game(run);
-    //game.start();
     while(!ext){
         getKeypress();
-        //std::this_thread::sleep_for(std::chrono::seconds(1));
     }
     game.join();
 }
@@ -65,25 +61,21 @@ void move(std::vector<Snake_body> &arr){
             arr[i]=arr[i-1];
         }
         arr[0].x--;
-        //arr.pop_back();
     }else if(key==right){
         for(int i=arr.size()-1;i>0;i--){
             arr[i]=arr[i-1];
         }
         arr[0].x++;
-        //arr.pop_back();
     }else if(key==up){
         for(int i=arr.size()-1;i>0;i--){
             arr[i]=arr[i-1];
         }
         arr[0].y--;
-        //arr.pop_back();
     }else if(key==down){
         for(int i=arr.size()-1;i>0;i--){
             arr[i]=arr[i-1];
         }
         arr[0].y++;
-        //arr.pop_back();
     }
     
 }
@@ -96,7 +88,6 @@ void run(){
     Snake_body t3(3,5);
     arr.push_back(t3);
     while(!ext){
-        //std::cout<<key<<std::endl;
         system("cls");
         for(int i=0;i<17;i++){
             std::cout<<'#';
@@ -106,7 +97,11 @@ void run(){
             std::cout<<'#';
             for(int j=0;j<15;j++){
                 bool f=0;
-                for(int k=0;k<arr.size();k++){
+                if(arr[0].x==j && arr[0].y==i){
+                    std::cout<<'X';
+                    f=1;
+                }
+                for(int k=1;k<arr.size();k++){
                     //std::cout<<arr[k].x<<","<<arr[k].y;
                     if(arr[k].x==j && arr[k].y==i){
                         std::cout<<'0';
@@ -133,4 +128,3 @@ void run(){
     }
 
 }
-
